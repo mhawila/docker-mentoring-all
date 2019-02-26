@@ -1,0 +1,57 @@
+<form class="form-horizontal" novalidate>
+
+	<div class="navbar navbar-default">
+	    <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="Pesquisar" ng-click="getFormsBySelectedFilter()" />
+
+            <input type="button" class="btn btn-default navbar-btn" value="Limpar" ng-click="onOpenFormsDialog()"/>
+        </div>
+	</div>
+
+	<messages error-message="{{errorMessageDialog}}" message={{messageDialog}} ></messages>
+
+	<hr>
+
+	<div class="form-group">
+		<div class="col-md-4">
+		   <input id="code" placeholder="Código" name="'Codigo'" ng-model="formFilter.code" type="text" class="form-control" autocomplete="off"/>
+		</div>
+
+		<div class="col-md-4">
+		     <input id="name" placeholder="Nome" name="'Nome'" ng-model="formFilter.name" type="text" class="form-control" autocomplete="off"/>
+		</div>
+
+		<div class="col-md-4">
+		 	<select id="programmaticArea" ng-model="formFilter.programmaticArea" type="text" class="form-control" ng-options="programmaticArea.name for programmaticArea in programmaticAreas"></select>
+		</div>
+	</div>
+
+	<hr>
+
+</form>
+
+<table st-table="displayedForms" st-safe-src="forms" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th class="col-md-1">{{ 'CODE' | translate }}</th>
+			<th class="col-md-5">{{ 'NAME' | translate }}</th>
+			<th class="col-md-2">{{ 'PROGRAMMATIC_AREA' | translate }}</th>
+		</tr>	
+	</thead>
+
+	<tbody>
+		<tr ng-repeat="form in displayedForms" ng-click="selectedForm(form)">
+			<td>{{form.code}}</td>
+			<td>{{form.name}}</td>
+			<td>{{form.programmaticArea.name}}</td>
+		</tr>
+	</tbody>
+
+	<tfoot>
+        <tr>
+            <td colspan="3" class="text-right" style="border: 1px solid #fff;">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+	</tfoot>
+</table>

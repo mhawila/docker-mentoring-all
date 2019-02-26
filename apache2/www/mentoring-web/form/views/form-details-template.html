@@ -1,0 +1,44 @@
+<div class="form-group">
+    <label for="name" class="col-md-2 control-label">{{ 'NAME' | translate }}:</label>
+    <div class="col-md-5">
+         <input type="text" id="name" name="'{{ 'NAME' | translate }}'" ng-model="form.name" type="text" class="form-control" autocomplete="off" required/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="formType" class="col-md-2 control-label">{{ 'FORM_TYPE' | translate }}:</label>
+    <div class="col-md-5">
+        <select id="formType" name="'{{ 'FORM_TYPE' | translate }}'" ng-model="form.formType" type="text" class="form-control" ng-options="formType | translate for formType in formTypes" required>
+        </select>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="programaticArea" class="col-md-2 control-label">{{ 'PROGRAMMATIC_AREA' | translate }}:</label>
+    <div class="col-md-5">
+        <select id="programaticArea" name="'{{ 'PROGRAMMATIC_AREA' | translate }}'" ng-model="form.programmaticArea" type="text" class="form-control"
+                ng-options="programmaticArea.name for programmaticArea in programmaticAreas track by programmaticArea.id" required>
+        </select>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="targetPatient" class="col-md-2 control-label">{{ 'TARGET_PATIENT' | translate }}:</label>
+    <div class="col-md-5">
+        <input id="targetPatient" string-to-int name="'{{ 'TARGET_PATIENT' | translate }}'" ng-model="form.targetPatient" type="number" class="form-control" required />
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="targetFile" class="col-md-2 control-label">{{ 'TARGET_FILE' | translate }}:</label>
+    <div class="col-md-5">
+        <input id="targetFile" string-to-int name="'{{ 'TARGET_FILE' | translate }}'" ng-model="form.targetFile" type="number" class="form-control" required />
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="description" class="col-md-2 control-label">{{ 'DESCRIPTION' | translate }}:</label>
+    <div class="col-md-5">
+        <textarea id="description" name="'{{ 'DESCRIPTION' | translate }}'" ng-model="form.description" cols="80" rows= "3" class="form-control" required></textarea>
+    </div>
+</div>

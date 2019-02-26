@@ -1,0 +1,92 @@
+<div class="header-menu">
+    <p>{{'ANALYSIS_TABLE' | translate}}<p>
+</div>
+
+<form class="form-horizontal" name="sampleIndicatorsController" novalidate>
+
+    <div class="navbar navbar-default">
+        <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="Pesquisar" ng-click="findAnalysisTablesBySelectedFilter()"/>
+            <input type="button" class="btn btn-default navbar-btn" value="Limpar" ng-click = "clean()"/>
+        </div>
+    </div>
+
+    <messages error-message="{{errorMessage}}" ></messages>
+
+    <hr>
+
+    <div class="form-group">
+        
+        <div class="col-md-2">
+            <label for="province" class="control-label">{{'PROVINCE' | translate }}:</label>
+            <select id="province" name="'{{ 'PROVINCE' | translate }}'" ng-model="filter.province" type="text" class="form-control" ng-change="onSelectProvince()">
+                <option ng-repeat="province in provinces" label="{{province | translate}}" value="{{province}}"></option>	
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label for="district" class="control-label">{{'DISTRICT' | translate }}:</label>
+            <select id="district" name="'{{ 'DISTRICT' | translate }}'" ng-model="filter.district" type="text" class="form-control" ng-options="district.district for district in districts" ng-change="onSelectDistrict()">
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label for="startDate" class="control-label">{{'START_DATE' | translate }}:</label>
+            <input id="startDate" ng-model="filter.startDate" name="{{PERFORMED_DATE | translate}}" type="text" class="form-control" autocomplete="off" readonly required datepicker>
+        </div>
+
+        <div class="col-md-2">
+            <label for="endDate" class="control-label">{{'END_DATE' | translate }}:</label>
+            <input id="endDate" ng-model="filter.endDate" name="{{PERFORMED_DATE | translate}}" type="text" class="form-control" autocomplete="off" readonly required datepicker>
+        </div>
+    
+    </div>
+
+    <hr>
+
+</form>
+
+<div class="btn-excel">
+    <button type="button" class="btn btn-success" ng-json-export-excel data="analysisTables" report-fields= "reportHeader" separator = "," filename = "fileName" >
+        <span class="fa fa-file-excel-o"></span> {{'EXPORT' | translate}}
+    </button>
+</div>
+
+<table st-table="analysisTablesDisplayed" class="table table-bordered" st-safe-src="analysisTables" >
+    <thead>
+        <tr>
+            <th class="col-md-3">{{'FORM' | translate}}</th>
+            <th class="col-md-1">{{'COLLECTED_SAMPLES' | translate}}</th>
+            <th class="col-md-1">{{'REFFERED_SAMPLES' | translate}}</th>
+            <th class="col-md-1">{{'REJECTED_SAMPLES' | translate}}</th>
+            <th class="col-md-1">{{'RECEIVED_SAMPLES' | translate}}</th>
+            <th class="col-md-1">{{'TRANSPORT_%' | translate}}</th>
+            <th class="col-md-1">{{'REJECTION_%' | translate}}</th>
+            <th class="col-md-1">{{'RESULT_%' | translate}}</th>
+            <th class="col-md-1">{{'TOTAL_RESULT_%' | translate}}</th>
+        </tr>	
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="sampleIndicator in analysisTables">
+            <td>{{sampleIndicator.form}}</td>
+            <td style="text-align: center;">{{sampleIndicator.collectedSamples}}</td>
+            <td style="text-align: center;">{{sampleIndicator.referredSamples}}</td>
+            <td style="text-align: center;">{{sampleIndicator.rejectedSamples}}</td>
+            <td style="text-align: center;">{{sampleIndicator.receivedResult}}</td>
+            <td style="text-align: center;">{{sampleIndicator.transportation}}</td>
+            <td style="text-align: center;">{{sampleIndicator.rejection}}</td>
+            <td style="text-align: center;">{{sampleIndicator.result}}</td>
+            <td style="text-align: center;">{{sampleIndicator.totalResult}}</td>
+        </tr>
+    </tbody>
+
+    <tfoot style="border:none;">
+        <tr>
+            <td colspan="9" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>

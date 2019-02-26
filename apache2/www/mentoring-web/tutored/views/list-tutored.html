@@ -1,0 +1,92 @@
+<div class="header-menu">
+    <p>Criterios de Pesquisa<p>
+</div>
+
+<form class="form-horizontal" name="listTutoredForm" novalidate>
+
+	<div class="navbar navbar-default">
+	    <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="Pesquisar" ng-click="getTutoredsBySelectedFilter()"/>
+            <input type="button" class="btn btn-default navbar-btn" value="Limpar" ng-click = "cleanTutored()"/>
+        </div>
+	</div>
+
+	<messages error-message="{{errorMessage}}" ></messages>
+
+	<hr>
+
+	<div class="form-group">
+		<div class="col-md-3">
+		    <input id="tutoredCode" placeholder="Código" name="'Código'" ng-model="tutoredFilter.code" type="text" class="form-control" required/>
+		</div>
+
+		<div class="col-md-3">
+		    <input id="tutoredName" placeholder="Nome" name="'Nome'" ng-model="tutoredFilter.name" type="text" class="form-control"/>
+		</div>
+		<div class="col-md-3">
+		    <input id="tutoredSurname" placeholder="Apelido" name="'Apelido'" ng-model="tutoredFilter.surname" type="text" class="form-control"/>
+		</div>
+		<div class="col-md-3">
+			 <input id="tutoredPhoneNumber" placeholder="Telemovel" name="'Telemovel'" ng-model="tutoredFilter.phoneNumber" type="text" class="form-control"/>
+    	</div>
+	</div>
+
+	<hr>
+
+</form>
+
+<table st-table="tutoredsDisplayed" class="table table-bordered" st-safe-src="tutoreds" >
+	<thead>
+		<tr>
+			<th class="col-md-1">{{'CODE' | translate}}</th>
+			<th class="col-md-3">{{'NAME' | translate}}</th>
+			<th class="col-md-3">{{'SURNAME' | translate}}</th>
+			<th class="col-md-2">{{'CARRER' | translate}}</th>
+			<th class="col-md-2">{{'PHONE_NUMBER' | translate}}</th>
+		</tr>	
+	</thead>
+
+	<tbody>
+		<tr ng-click="onSelectTutored(tutored)"  data-toggle="modal" data-target="#myModal" ng-repeat="tutored in tutoredsDisplayed">
+			<td>{{tutored.code}}</td>
+			<td>{{tutored.name}}</td>
+			<td>{{tutored.surname}}</td>
+			<td>{{tutored.career.position}}</td>
+			<td>{{tutored.phoneNumber}}</td>
+		</tr>
+	</tbody>
+
+	<tfoot style="border:none;">
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+	</tfoot>
+
+</table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Editar Tutored</h4>
+      </div>
+
+      <form class="form-horizontal" name="editTutoredForm" novalidate>
+	      <div class="modal-body form-horizontal">
+	      	<messages message="{{message}}" error-message="{{errorMessage}}" has-errors="hasErrors"></messages>
+	       	<div ng-include="'tutored/views/tutored-template.html'"></div>
+	      </div>
+	      
+	      <div class="modal-footer">
+	        <input type="button" class="btn btn-default" data-dismiss="modal" value="Fechar"/>
+	        <input type="submit" class="btn btn-primary" ng-click="editTutored()" value="Actualizar" ng-disabled="isDisabled"/>
+	      </div>
+      </form>
+
+    </div>
+  </div>
+</div>

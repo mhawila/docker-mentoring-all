@@ -1,0 +1,9 @@
+<div class="alert alert-success" role="alert" ng-show="message">
+    <strong>{{message}}</strong>
+</div>
+<div class="alert alert-danger" role="alert" ng-show="errorMessage">
+    <strong>{{errorMessage}}</strong>
+</div>
+<div class="alert alert-danger" role="alert" ng-show="hasErrors.length">
+    <p ng-repeat="error in hasErrors"><strong>{{error.field}}</strong></p>
+</div>

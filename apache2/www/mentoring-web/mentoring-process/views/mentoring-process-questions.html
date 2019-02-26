@@ -1,0 +1,33 @@
+<div class="panel panel-success">
+	
+	<div class="panel-heading">
+		<strong>{{'QUESTIONS' | translate}} - [{{question.questionCategory | translate}}] </strong></div>
+	
+	<div class="panel-body">
+
+		<div class="form-group" ng-show="question.questionType === 'TEXT'">
+		    <label for="textField" class="col-md-4 control-label">{{question.question}}:</label>
+		    <div class="col-md-4">
+			        <select id="questionType" name="'{{question.question}}'" ng-model="question.value" type="text" class="form-control" required>
+			            <option value="ZAMBEZIA" label="Competente"/>
+			            <option value="ZAMBEZIA" label="Não Satisfatorio"/>
+			            <option value="ZAMBEZIA" label="NA"/>
+			        </select>
+		   	</div>
+		</div>
+		
+		<div class="navbar navbar-default">
+		    <div class="col-md-12">
+		        <button class="btn btn-success navbar-btn" ng-click="next()" ng-show="showNextButton()">
+		          <i class="fa fa-step-forward"></i>
+		          {{'NEXT' | translate}}
+		        </button>
+		        <button class="btn btn-warning navbar-btn pull-right" ng-click = "previews()" ng-show="showPreviewsButton()">
+		          <span class="fa fa-step-backward"></span>
+		          {{'PREVIEWS' | translate}}
+		        </button>
+		    </div>
+		</div>
+  	</div>
+
+</div>

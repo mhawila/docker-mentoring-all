@@ -1,0 +1,95 @@
+<div class="header-menu">
+    <p>{{'SEARCH_QUESTIONS' | translate }}<p>
+</div>
+
+<form class="form-horizontal" name="listQuestionsForm" novalidate>
+
+	<div class="navbar navbar-default">
+	    <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="{{'SEARCH' | translate }}" ng-click="getQuestions()"/>
+            <input type="button" class="btn btn-default navbar-btn" value="{{'CLEAN' | translate }}" ng-click = "cleanQuestionFilter()"/>
+        </div>
+	</div>
+
+	<messages error-message="{{errorMessage}}" ></messages>
+
+	<hr>
+
+	<div class="form-group">
+		<div class="col-md-3">
+		    <input id="questionCode" placeholder="{{'CODE' | translate}}" name="'{{'CODE' | translate}}'" ng-model="questionFilter.code" type="text" class="form-control" autocomplete="off" required/>
+		</div>
+
+		<div class="col-md-3">
+		    <input id="question" placeholder="{{'QUESTION' | translate}}" name="'{{'QUESTION' | translate}}'" ng-model="questionFilter.question" type="text" class="form-control" autocomplete="off"/>
+		</div>
+		<div class="col-md-3">
+	        <select id="questionType" name="'{{'QUESTION_TYPE' | translate}}'" ng-model="questionFilter.questionType" type="text" class="form-control" required>
+	            <option value="TEXT" label="Texto"/>
+	        </select>
+    	</div>
+    	<div class="col-md-3">
+	        <select id="questionCategory" name="'{{'QUESTION_CATEGORY' | translate}}'" ng-model="questionFilter.questionCategory" type="text" class="form-control" required>
+	            <option value="ACCURACY" label="Exatidão"/>
+	        </select>
+    	</div>
+	</div>
+
+	<hr>
+
+</form>
+
+<table st-table="questionsDisplayed" class="table table-bordered" st-safe-src="questions" >
+	<thead>
+		<tr>
+			<th class="col-md-1">{{'CODE' | translate}}</th>
+			<th class="col-md-4">{{'QUESTION' | translate}}</th>
+			<th class="col-md-1">{{'QUESTION_TYPE' | translate}}</th>
+			<th class="col-md-1">{{'QUESTION_CATEGORY' | translate}}</th>
+		</tr>	
+	</thead>
+
+	<tbody>
+		<tr ng-click="onSelectQuestion(question)"  data-toggle="modal" data-target="#questionModal" ng-repeat="question in questionsDisplayed">
+			<td>{{question.code}}</td>
+			<td>{{question.question}}</td>
+			<td>{{question.questionType | translate}}</td>
+			<td>{{question.questionCategory | translate}}</td>
+		</tr>
+	</tbody>
+
+	<tfoot style="border:none;">
+        <tr>
+            <td colspan="4" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+	</tfoot>
+
+</table>
+
+<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{'EDIT_QUESTION' | translate }}</h4>
+      </div>
+
+      <form class="form-horizontal" name="editQuestionForm" novalidate>
+	      
+	      <div class="modal-body form-horizontal">
+	      	<messages message="{{message}}" error-message="{{errorMessage}}" has-errors="hasErrors"></messages>
+	       	<div ng-include="'question/views/question-template.html'"></div>
+	      </div>
+	      
+	      <div class="modal-footer">
+	        <input type="button" class="btn btn-default" data-dismiss="modal" value="{{'CLOSE' | translate}}"/>
+	        <input type="submit" class="btn btn-primary" ng-click="editQuestion()" value="{{'UPDATE' | translate}}" ng-disabled="isDisabled"/>
+	      </div>
+      </form>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="form-group">
+    <label for="question" class="col-md-2 control-label">{{ 'QUESTION' | translate }}:</label>
+    <div class="col-md-5">
+         <input id="question" name="'{{ 'QUESTION' | translate }}'" ng-model="question.question" type="text" class="form-control" autocomplete="off" required/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="questionType" class="col-md-2 control-label">{{ 'QUESTION_TYPE' | translate }}:</label>
+    <div class="col-md-3">
+        <select id="questionType" name="{{ 'QUESTION_TYPE' | translate }}" ng-model="question.questionType" ng-options="questionType | translate for questionType in questionTypes" type="text" class="form-control" required>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label for="questionCategory" class="col-md-2 control-label">{{ 'QUESTION_CATEGORY' | translate }}:</label>
+    <div class="col-md-3">
+        <select id="questionCategory" name="{{ 'QUESTION_CATEGORY' | translate }}" ng-model="question.questionCategory" type="text" class="form-control" ng-options="questionCategory | translate for questionCategory in questionCategories" required>
+        </select>
+    </div>
+</div>

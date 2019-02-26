@@ -1,0 +1,23 @@
+version: '2'
+services:
+    apache2-mentoring:
+        build: apache2
+        ports:
+            - "80:80"
+            - "443:443"
+        network_mode: bridge
+        external_links:
+            - tomcat-mentoring
+            - tomcat-account
+            - tomcat-mentoring-test
+            - tomcat-account-test
+        container_name: apache2-mentoring
+        environment:
+            COMPOSE_HTTP_TIMEOUT: 200
+        volumes:
+             - /opt/www:/var/www
+             - ./apache2/logs:/usr/local/apache2/logs
+             - ./apache2/conf.d:/usr/local/apache2/conf.d
+             - /opt/etc/letsencrypt:/etc/letsencrypt
+        hostname: apache2-mentoring
+        #restart: unless-stopped

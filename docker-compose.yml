@@ -1,0 +1,54 @@
+version: '2.1'
+services:
+    mysql-account:
+       build: mysql-account
+       ports:
+        - "${ACCOUNT_MYSQL_PORT:-3340}:3306"
+       network_mode: bridge
+       container_name: mysql-account
+       volumes:
+         - ${ACCOUNT_MYSQL_DATA:-./data/account}:/usr/local/mysql
+       hostname: mysql-account
+       restart: unless-stopped
+    tomcat-account:
+       build: tomcat-account
+       ports:
+          - "8091:8080"
+          - "8001:8000"
+       network_mode: bridge
+       container_name: tomcat-account
+       depends_on:
+         - mysql-account
+       links:
+         - mysql-account
+       volumes:
+         - ${ACCOUNT_TOMCAT_WEBAPPS:-./webapps/account}:/usr/local/tomcat/webapps
+       hostname: tomcat-account
+       restart: unless-stopped
+    # The mentoring API container setup.
+    mysql-mentoring:
+       build: mysql-mentoring
+       ports:
+        - "${MENTORING_MYSQL_PORT:-3341}:3306"
+       network_mode: bridge
+       container_name: mysql-mentoring
+       volumes:
+         - ${MENTORING_MYSQL_DATA:-./data/mentoring}:/usr/local/mysql
+       hostname: mysql-mentoring
+       restart: unless-stopped
+    tomcat-mentoring:
+       build: tomcat-mentoring
+       ports:
+         - "${MENTORING_TOMCAT_PUBLISHED_PORT:-8080}:8080"
+         - "8000:8000"
+       network_mode: bridge
+       depends_on:
+         - mysql-mentoring
+         - tomcat-account
+       links:
+         - mysql-mentoring
+       container_name: tomcat-mentoring
+       volumes:
+         - ${MENTORING_TOMCAT_WEBAPPS:-./webapps/mentoring}:/usr/local/tomcat/webapps
+       hostname: tomcat-mentoring
+       restart: unless-stopped

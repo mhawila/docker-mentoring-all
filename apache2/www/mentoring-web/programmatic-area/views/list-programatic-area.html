@@ -1,0 +1,85 @@
+<div class="header-menu">
+    <p>{{ 'CRITERIA' | translate }}<p>
+</div>
+
+<form class="form-horizontal" name="listProgrammaticAreaForm" novalidate>
+
+	<div class="navbar navbar-default">
+	    <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="Pesquisar" ng-click="getProgrammaticAreasBySelectedFilter()"/>
+            <input type="button" class="btn btn-default navbar-btn" value="Limpar" ng-click = "cleanProgrammaticArea()"/>
+        </div>
+	</div>
+
+	<messages error-message="{{errorMessage}}" ></messages>
+
+	<hr>
+
+	<div class="form-group">
+		<div class="col-md-3">
+		   <input id="programmaticAreaCode" placeholder="Código" name="'Codigo'" ng-model="programmaticAreaFilter.code" type="text" class="form-control" autocomplete="off" required/>
+		</div>
+
+		<div class="col-md-3">
+		     <input id="programmaticAreaName" placeholder="Nome" name="'Nome'" ng-model="programmaticAreaFilter.name" type="text" class="form-control" autocomplete="off" required/>
+		</div>
+		<div class="col-md-3">
+		      <input id="programmaticAreaDescription" placeholder="Descricao" placeholder="Código" ame="'Descricao'" ng-model="programmaticAreaFilter.description" type="text" class="form-control" autocomplete="off" required/>
+    	</div>
+	</div>
+
+	<hr>
+
+</form>
+
+<table st-table="programmaticAreaDisplayed" class="table table-bordered" st-safe-src="programmaticAreas" >
+	<thead>
+		<tr>
+			<th class="col-md-1">{{ 'CODE' | translate }}</th>
+			<th class="col-md-5">{{ 'NAME' | translate }}</th>
+			<th class="col-md-2">{{ 'PROGRAMMATIC_AREA' | translate }}</th>
+		</tr>	
+	</thead>
+
+	<tbody>
+		<tr ng-click="onSelectprogrammaticArea(programmaticArea)"  data-toggle="modal" data-target="#myModal" ng-repeat="programmaticArea in programmaticAreaDisplayed">
+			<td>{{programmaticArea.code}}</td>
+			<td>{{programmaticArea.name}}</td>
+			<td>{{programmaticArea.description}}</td>
+		</tr>
+	</tbody>
+
+	<tfoot style="border:none;">
+        <tr>
+            <td colspan="4" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+	</tfoot>
+
+</table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{ 'EDIT_PROGRAMATIC_AREA' | translate }}</h4>
+      </div>
+
+      <form class="form-horizontal" name="editprogrammaticAreaForm" novalidate>
+	      <div class="modal-body form-horizontal">
+	      	<messages message="{{message}}" error-message="{{errorMessage}}" has-errors="hasErrors"></messages>
+	       	<div ng-include="'programmatic-area/views/programatic-area-template.html'"></div>
+	      </div>
+	      
+	      <div class="modal-footer">
+	        <input type="button" class="btn btn-default" data-dismiss="modal" value="Fechar"/>
+	        <input type="submit" class="btn btn-primary" ng-click="editProgrammaticArea()" value="Actualizar" ng-disabled="isDisabled"/>
+	      </div>
+      </form>
+
+    </div>
+  </div>
+</div>

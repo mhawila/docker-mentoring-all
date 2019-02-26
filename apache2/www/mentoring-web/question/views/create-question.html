@@ -1,0 +1,24 @@
+<div class="header-menu">
+    <p>{{'CREATE_QUESTION' | translate}}<p>
+</div>
+
+<form class="form-horizontal" name="createQuestionForm" novalidate>
+    
+    <div class="navbar navbar-default">
+        <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="{{'CREATE' | translate}}" ng-click="createQuestion()"/>
+            <input type="button" class="btn btn-default navbar-btn" value="{{'CLEAN' | translate}}" ng-click = "cleanQuestion()"/>
+        </div>
+    </div>
+    
+    <!-- Messages   -->
+    <messages message="{{message}}" error-message="{{errorMessage}}" has-errors="hasErrors" ></messages>
+    
+    <hr/>
+    
+        <div>
+            <div ng-include="'question/views/question-template.html'"></div> 
+        </div>
+
+    <hr/>
+</form>

@@ -1,0 +1,156 @@
+<div class="header-menu">
+    <p>Criterios de Pesquisa<p>
+</div>
+
+<form class="form-horizontal" name="listMentoringProcessController" novalidate>
+
+	<div class="navbar navbar-default">
+	    <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="Pesquisar" ng-click="getTutoredsBySelectedFilter()"/>
+            <input type="button" class="btn btn-default navbar-btn" value="Limpar" ng-click = "cleanMentorship()"/>
+        </div>
+	</div>
+
+	<messages error-message="{{errorMessage}}" ></messages>
+
+	<hr>
+
+	<div class="form-group">
+
+		<div class="col-md-2">
+		    <input id="code" placeholder="{{'CODE'| translate}}" ng-model="mentorshipFilter.code" type="text" class="form-control"/>
+		</div>
+
+		<div class="col-md-2">
+		    <input id="tutor" placeholder="{{'TUTOR' | translate}}" ng-model="mentorshipFilter.tutor" type="text" class="form-control"/>
+		</div>
+
+		<div class="col-md-2">
+		    <input id="tuored" placeholder="{{'TUTORED' | translate}}" ng-model="mentorshipFilter.tutored" type="text" class="form-control"/>
+		</div>
+
+		<div class="col-md-3">
+		    <input id="form" placeholder="{{'FORM' | translate}}" ng-model="mentorshipFilter.form" type="text" class="form-control"/>
+		</div>
+
+		<div class="col-md-3">
+		    <input id="healthFacility" placeholder="{{'HEALTH_FACILITY' | translate}}" ng-model="mentorshipFilter.healthFacility" type="text" class="form-control"/>
+		</div>
+	</div>
+
+	<hr>
+
+</form>
+
+<table st-table="mentorshipsDisplayed" class="table table-bordered" st-safe-src="mentorships" >
+	<thead>
+		<tr>
+			<th class="col-md-1">{{'CODE'| translate}}</th>
+			<th class="col-md-2">{{'TUTOR' | translate}}</th>
+			<th class="col-md-2">{{'TUTORED' | translate}}</th>
+			<th class="col-md-3">{{'FORM' | translate}}</th>
+			<th class="col-md-3">{{'HEALTH_FACILITY' | translate}}</th>
+		</tr>	
+	</thead>
+
+	<tbody>
+		<tr data-toggle="modal" data-target="#myModal" ng-repeat="mentorship in mentorshipsDisplayed" ng-click="findAnswersByMentorship(mentorship)">
+			<td>{{mentorship.code}}</td>
+			<td>{{mentorship.tutor.name}} {{mentorship.tutor.surname}}</td>
+			<td>{{mentorship.tutored.name}} {{mentorship.tutored.surname}}</td>
+			<td>{{mentorship.form.name}}</td>
+			<td>{{mentorship.healthFacility.healthFacility}}</td>
+		</tr>
+	</tbody>
+
+	<tfoot style="border:none;">
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+	</tfoot>
+
+</table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{{'MENTORHIP_DETAILS' | translate}}</h4>
+			</div>
+
+			<div class="modal-body form-horizontal">
+				<form class="form-horizontal" novalidate>
+
+					<div class="form-group">
+						<div class="col-md-4">
+							<label>{{'CODE' | translate}}:</label>
+							<span>{{mentorship.code}}</span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-12">
+							<label>{{'FORM' | translate}}:</label>
+							<span>{{mentorship.form.name}}</span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-6">
+							<label>{{'TUTOR' | translate}}:</label>
+							<span>{{mentorship.tutor.name}} {{mentorship.tutor.surname}}</span>
+						</div>
+						<div class="col-md-6">
+							<label>{{'TUTORED' | translate}}:</label>
+							<span>{{mentorship.tutored.name}} {{mentorship.tutored.surname}}</span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-4">
+							<label>{{'HEALTH_FACILITY' | translate}}:</label>
+							<span>{{mentorship.healthFacility.healthFacility}}</span>
+						</div>
+					</div>
+
+					<hr>
+
+				</form>
+
+				<table st-table="displayedAnswers" st-safe-src="answers" class="table table-bordered" >
+					<thead>
+						<tr>
+							<th class="col-md-3">{{ 'QUESTION_CATEGORY' | translate }}</th>
+							<th class="col-md-7">{{ 'QUESTION' | translate }}</th>
+							<th class="col-md-2">{{ 'ANSWER' | translate }}</th>
+						</tr>	
+					</thead>
+
+					<tbody>
+						<tr ng-repeat="answer in displayedAnswers">
+							<td>{{answer.answer.question.questionCategory | translate}}</td>
+							<td>{{answer.answer.question.question}}</td>
+							<td>{{answer.value | translate}}</td>
+						</tr>
+					</tbody>
+
+					<tfoot>
+						<tr>
+							<td colspan="3" class="text-right" style="border: 1px solid #fff;">
+								<div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div class="modal-footer">
+				<input type="submit" class="btn btn-primary" ng-click="editTutored()" value="Fechar" ng-disabled="isDisabled" data-dismiss="modal"/>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<div class="header-menu">
+    <p>{{ 'CREATE_PROGRAMATIC_AREA' | translate }}<p>
+</div>
+
+<form class="form-horizontal" name="createProgrammaticAreaForm" novalidate>
+    
+    <div class="navbar navbar-default">
+        <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="Cadastrar" ng-click="createProgrammaticArea()"/>
+            <input type="button" class="btn btn-default navbar-btn" value="Limpar" ng-click = "cleanProgrammaticArea()"/>
+        </div>
+    </div>
+    
+    <!-- Messages   -->
+    <messages message="{{message}}" error-message="{{errorMessage}}" has-errors="hasErrors" ></messages>
+    
+    <hr/>
+    
+        <div>
+            <div ng-include="'programmatic-area/views/programatic-area-template.html'"></div> 
+        </div>
+
+    <hr/>
+</form>

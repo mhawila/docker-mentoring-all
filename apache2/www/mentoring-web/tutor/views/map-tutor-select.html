@@ -1,0 +1,74 @@
+
+<div class="navbar navbar-default">
+	<div class="col-md-6">
+		<input type="submit" class="btn btn-success navbar-btn" value="Pesquisar" ng-click="getTutorsBySelectedFilter()"/>
+		<input type="button" class="btn btn-default navbar-btn" value="Limpar" ng-click = "cleanMap()"/>
+	</div>
+</div>
+
+<hr>
+
+<div class="form-group">
+	<div class="col-md-3">
+		<input id="tutorCode" placeholder="Código" name="'Código'" ng-model="tutorFilter.code" type="text" class="form-control" required/>
+	</div>
+
+	<div class="col-md-3">
+		<input id="tutorName" placeholder="Nome" name="'Nome'" ng-model="tutorFilter.name" type="text" class="form-control"/>
+	</div>
+	<div class="col-md-3">
+		<input id="tutorSurname" placeholder="Apelido" name="'Apelido'" ng-model="tutorFilter.surname" type="text" class="form-control"/>
+	</div>
+	<div class="col-md-3">
+		<select id="carrer" name="'Carreira'"  ng-model="tutorFilter.careerType" type="text" class="form-control" placeholder="Carreira"
+			ng-options="careerType | translate for careerType in careerTypes" value="{{careerType}}" required>
+			<option value="" disabled selected>{{'CATEGORY' | translate}}</option>
+		</select>
+	</div>
+</div>
+
+<hr>
+
+<table st-table="tutorsDisplayed" class="table table-bordered" st-safe-src="tutors" >
+	<thead>
+		<tr>
+			<th class="col-md-1">{{'CODE' | translate}}</th>
+			<th class="col-md-3">{{'NAME' | translate}}</th>
+			<th class="col-md-3">{{'SURNAME' | translate}}</th>
+			<th class="col-md-2">{{'CARRER' | translate}}</th>
+			<th class="col-md-2">{{'PHONE_NUMBER' | translate}}</th>
+		</tr>	
+	</thead>
+
+	<tbody>
+		<tr ng-click="onSelectTutor(tutor)" ng-class="{selectedTr : tutor.id === tutorProgramaticArea.tutor.id}" ng-repeat="tutor in tutorsDisplayed">
+			<td>{{tutor.code}}</td>
+			<td>{{tutor.name}}</td>
+			<td>{{tutor.surname}}</td>
+			<td>{{tutor.career.position}}</td>
+			<td>{{tutor.phoneNumber}}</td>
+		</tr>
+	</tbody>
+
+	<tfoot style="border:none;">
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+	</tfoot>
+
+</table>
+
+<div class="navbar navbar-default">
+
+	<div class="col-md-12">
+		
+		<button class="btn btn-success navbar-btn" ng-click="next()">
+			<i class="fa fa-step-forward"></i>
+			{{'NEXT' | translate}}
+		</button>
+
+	</div>
+
+</div>

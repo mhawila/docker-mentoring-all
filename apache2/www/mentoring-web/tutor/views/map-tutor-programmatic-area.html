@@ -1,0 +1,70 @@
+<div class="col-md-6">
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+            <strong>{{'TUTOR' | translate}} <i class="fa fa-user"></i></strong>
+        </div>
+        
+        <div class="panel-body">
+            <p><strong>{{'NAME' | translate }}:</strong> {{tutorProgramaticArea.tutor.name}} {{tutorProgramaticArea.tutor.surname}}</p>
+            <p><strong>{{'CATEGORY' | translate }}:</strong> {{tutorProgramaticArea.tutor.career.careerType | translate}}</p>
+            <p><strong>{{'CARRER' | translate }}:</strong> {{tutorProgramaticArea.tutor.career.position}}</p>
+            <p><strong>{{'PHONE_NUMBER' | translate }}:</strong> {{tutorProgramaticArea.tutor.phoneNumber}}</p>
+            <p><strong>{{'IS_USER' | translate }}:</strong> {{tutorProgramaticArea.tutor.isUser | translate }}</p>
+        </div>
+
+    </div>
+
+
+    <table st-table="programmaticAreaDisplayed" class="table table-bordered" st-safe-src="programmaticAreas" >
+        <thead>
+            <tr>
+                <th class="col-md-1">{{ 'CODE' | translate }}</th>
+                <th class="col-md-5">{{ 'NAME' | translate }}</th>
+                <th class="col-md-2">{{ 'PROGRAMMATIC_AREA' | translate }}</th>
+            </tr>	
+        </thead>
+
+        <tbody>
+            <tr ng-click="onSelectProgrammaticArea(programmaticArea)" ng-class="{selectedTr : programmaticArea.id === tutorProgramaticArea.programmaticArea.id}" ng-repeat="programmaticArea in programmaticAreaDisplayed">
+                <td>{{programmaticArea.code}}</td>
+                <td>{{programmaticArea.description}}</td>
+                <td>{{programmaticArea.name}}</td>
+            </tr>
+        </tbody>
+
+        <tfoot style="border:none;">
+            <tr>
+                <td colspan="4" class="text-center">
+                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <form>
+
+        <div style="margin-bottom: 2em;" ng-show="tutorProgramaticArea.tutor.isUser != 'true' ">
+            <label>{{'MAKE_USER' | translate}} ?</label>
+            <toggle ng-model="tutorProgramaticArea.mapAsUser" on="{{'YES' | translate}}" off="{{'NO' | translate}}" offstyle="btn-danger"></toggle>
+        </div>
+    </form>
+
+</div>
+
+<hr style="clear: both"> 
+
+<div class="navbar navbar-default">
+        
+        <div class="col-md-12">
+            <button class="btn btn-success navbar-btn" ng-click="save()" ng-disabled="disabled">
+              <i class="fa fa-save"></i>
+              {{'SAVE' | translate}}
+            </button>
+            <button class="btn btn-warning navbar-btn pull-right" ng-click = "back()" ng-disabled="disabled">
+              <span class="fa fa-step-backward"></span>
+              {{'PREVIEWS' | translate}}
+            </button>
+        </div>
+    
+</div>

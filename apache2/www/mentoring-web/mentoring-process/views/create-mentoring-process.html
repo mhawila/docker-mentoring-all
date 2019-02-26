@@ -1,0 +1,180 @@
+<div class="header-menu">
+    <p>{{'CREATE_MENTORING_PROCESS' | translate}}<p>
+</div>
+
+<form class="form-horizontal" name="answerQuestions" novalidate>
+
+	<!-- Messages   -->
+    <messages message="{{message}}" error-message="{{errorMessage}}" has-errors="hasErrors" ></messages>
+
+    <div class="form-group">
+	   	<div class="col-md-6">
+	    	<div class="panel panel-info">
+	
+				<div class="panel-heading">
+					<a data-toggle="modal" ng-click="onOpenTutorDialog()" data-target="#selectTutorModal"><strong>{{'TUTOR' | translate}} <i class="fa fa-user-plus"></i></strong></a>
+				</div>
+				
+				<div class="panel-body">
+					<p><strong>{{'NAME' | translate }}:</strong> {{tutor.name}} {{tutor.surname}}</p>
+					<p><strong>{{'CATEGORY' | translate }}:</strong> {{tutor.career.careerType | translate}}</p>
+					<p><strong>{{'CARRER' | translate }}:</strong> {{tutor.career.position}}</p>
+					<p><strong>{{'PHONE_NUMBER' | translate }}:</strong> {{tutor.phoneNumber}}</p>
+			  	</div>
+  			</div>
+		</div>
+
+	   	<div class="col-md-6">
+	     	<div class="panel panel-warning">
+	
+				<div class="panel-heading">
+					<a data-toggle="modal" ng-click="onOpenTutoredDialog()" data-target="#selectTutoredModal"><strong>{{'TUTORED' | translate}} <i class="fa fa-user-plus"></i></strong></a>
+				</div>
+				
+				<div class="panel-body">
+					<p><strong>{{'NAME' | translate }}:</strong> {{tutored.name}} {{tutored.surname}}</p>
+					<p><strong>{{'CATEGORY' | translate }}:</strong> {{tutored.career.careerType | translate}}</p>
+					<p><strong>{{'CARRER' | translate }}:</strong> {{tutored.career.position}}</p>
+					<p><strong>{{'PHONE_NUMBER' | translate }}:</strong> {{tutored.phoneNumber}}</p>
+			  	</div>
+  			</div>
+   		</div>
+
+	</div>
+
+	<hr/>
+
+	<div class="form-group">
+	    <label for="performedDate" class="col-md-2 control-label">{{'PERFORMED_DATE' | translate }}:</label>
+	   	<div class="col-md-2">
+			<input id="performedDate" ng-model="mentorship.performedDate" name="{{PERFORMED_DATE | translate}}" type="text" class="form-control" autocomplete="off" readonly required datepicker>
+   		</div>
+
+   		<label for="referredMonth" class="col-md-2 control-label">{{'REFERRED_MONTH' | translate }}:</label>
+	   	<div class="col-md-2">
+	        <select id="referredMonth" name="'{{ 'REFERRED_MONTH' | translate }}'" ng-model="mentorship.referredMonth" type="text" class="form-control" ng-options="month | translate for month in months">
+	        </select>
+   		</div>
+
+   		<label class="col-md-2 control-label"></label>
+	   	<div class="col-md-2">
+   		</div>
+	</div>
+
+	<div class="form-group">
+	    <label for="tutorName" class="col-md-2 control-label">{{'PROVINCE' | translate }}:</label>
+	   	<div class="col-md-2">
+	        <select id="province" name="'{{ 'PROVINCE' | translate }}'" ng-model="province" type="text" class="form-control" ng-click="onSelectProvince()">
+	        	<option ng-repeat="province in provinces" label="{{province | translate}}" value="{{province}}"></option>	
+	        </select>
+   		</div>
+
+   		<label for="tutorName" class="col-md-2 control-label">{{'DISTRICT' | translate }}:</label>
+	   	<div class="col-md-2">
+	        <select id="district" name="'{{ 'DISTRICT' | translate }}'" ng-model="district" type="text" class="form-control" ng-options="district.district for district in districts" ng-click="onSelectDistrict()">
+	        </select>
+   		</div>
+
+   		<label for="tutorName" class="col-md-2 control-label">{{'HEALTH_FACILITY' | translate }}:</label>
+	   	<div class="col-md-2">
+	        <select id="questionType" name="'{{ 'HEALTH_FACILITY' | translate }}'" ng-model="mentorship.healthFacility" type="text" class="form-control" ng-options="healthFacility.healthFacility for healthFacility in healthFacilities" required>
+	        </select>
+   		</div>
+	</div>
+
+	<hr/>
+
+	<div class="alert alert-info" role="alert">
+		<a data-toggle="modal" ng-click="onOpenFormsDialog()" data-target="#selectFromModal"><strong>{{'FORM' | translate}} <i class="fa fa-user-plus"></i></strong>:</a>
+		<span>
+			<strong>{{form.code}} / {{form.name}}</strong>   |  
+			<strong>{{'PROGRAMMATIC_AREA' | translate}}: {{form.programmaticArea.name}}</strong>	
+		</span>
+	</div>
+	
+	<div ui-view ng-show="{{hasForm}}"></div>
+
+	<div class="navbar navbar-default">
+		<div class="col-md-12">
+		    <button class="btn btn-success navbar-btn" ng-click="saveMentoringProcess()" ng-disabled="isDisabled" >
+		      <i class="fa fa-save"></i>
+		      {{'SAVE' | translate}}
+		    </button>
+		    <button class="btn btn-default navbar-btn" ng-click = "clean()" type="button">
+		      <span class="fa fa-refresh"></span>
+		      {{'CLEAN' | translate}}
+		    </button>
+		</div>
+	</div>
+
+</form>
+
+<!-- Select Form -->
+<div class="modal fade" id="selectFromModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{'LIST_FORMS' | translate }}</h4>
+			</div>
+
+			<div class="modal-body">
+				<div ng-include="'mentoring-process/views/list-forms.html'" ></div>
+			</div>
+
+			<div class="modal-footer">
+	          <button class="btn btn-primary" data-dismiss="modal">
+	              <i class="fa fa-close"></i>
+	              {{'CLOSE' | translate}} 
+	          </button>
+       		</div>
+			
+		</div>
+	</div>
+</div>
+
+
+<!-- Select Tutors -->
+<div class="modal fade" id="selectTutorModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{'LIST_TUTORS' | translate }}</h4>
+			</div>
+
+			<div class="modal-body">
+				<div ng-include="'mentoring-process/views/list-tutors.html'" ></div>
+			</div>
+
+			<div class="modal-footer">
+	          <button class="btn btn-primary" data-dismiss="modal">
+	              <i class="fa fa-close"></i>
+	              {{'CLOSE' | translate}} 
+	          </button>
+       		</div>
+			
+		</div>
+	</div>
+</div>
+
+<!-- Select Tutoreds -->
+<div class="modal fade" id="selectTutoredModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{'LIST_TUTOREDS' | translate }}</h4>
+			</div>
+
+			<div class="modal-body">
+				<div ng-include="'mentoring-process/views/list-tutoreds.html'" ></div>
+			</div>
+
+			<div class="modal-footer">
+	          <button class="btn btn-primary" data-dismiss="modal">
+	              <i class="fa fa-close"></i>
+	              {{'CLOSE' | translate}} 
+	          </button>
+       		</div>
+			
+		</div>
+	</div>
+</div>

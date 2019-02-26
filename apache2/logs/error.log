@@ -1,0 +1,27 @@
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.10. Set the 'ServerName' directive globally to suppress this message
+[Mon Feb 18 18:40:26.015976 2019] [ssl:warn] [pid 1:tid 140653041169600] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Feb 18 18:40:26.032878 2019] [mpm_event:notice] [pid 1:tid 140653041169600] AH00489: Apache/2.4.38 (Unix) OpenSSL/1.1.0j configured -- resuming normal operations
+[Mon Feb 18 18:40:26.032934 2019] [core:notice] [pid 1:tid 140653041169600] AH00094: Command line: 'httpd -D FOREGROUND'
+[Mon Feb 18 18:46:55.720661 2019] [mpm_event:notice] [pid 1:tid 140653041169600] AH00491: caught SIGTERM, shutting down
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.10. Set the 'ServerName' directive globally to suppress this message
+[Mon Feb 18 18:49:44.105315 2019] [ssl:warn] [pid 1:tid 140123349087424] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Feb 18 18:49:44.117254 2019] [mpm_event:notice] [pid 1:tid 140123349087424] AH00489: Apache/2.4.38 (Unix) OpenSSL/1.1.0j configured -- resuming normal operations
+[Mon Feb 18 18:49:44.117297 2019] [core:notice] [pid 1:tid 140123349087424] AH00094: Command line: 'httpd -D FOREGROUND'
+[Mon Feb 18 18:51:47.322974 2019] [mpm_event:notice] [pid 1:tid 140123349087424] AH00491: caught SIGTERM, shutting down
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.10. Set the 'ServerName' directive globally to suppress this message
+[Mon Feb 18 18:51:57.664396 2019] [ssl:warn] [pid 1:tid 140651810333888] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Feb 18 18:51:57.667471 2019] [mpm_event:notice] [pid 1:tid 140651810333888] AH00489: Apache/2.4.38 (Unix) OpenSSL/1.1.0j configured -- resuming normal operations
+[Mon Feb 18 18:51:57.667532 2019] [core:notice] [pid 1:tid 140651810333888] AH00094: Command line: 'httpd -D FOREGROUND'
+[Mon Feb 18 18:53:54.736823 2019] [mpm_event:notice] [pid 1:tid 140651810333888] AH00491: caught SIGTERM, shutting down
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.10. Set the 'ServerName' directive globally to suppress this message
+[Mon Feb 18 18:55:02.512046 2019] [ssl:warn] [pid 1:tid 140719071618240] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Feb 18 18:55:02.515439 2019] [mpm_event:notice] [pid 1:tid 140719071618240] AH00489: Apache/2.4.38 (Unix) OpenSSL/1.1.0j configured -- resuming normal operations
+[Mon Feb 18 18:55:02.515499 2019] [core:notice] [pid 1:tid 140719071618240] AH00094: Command line: 'httpd -D FOREGROUND'
+[Wed Feb 20 21:25:31.200547 2019] [proxy_http:error] [pid 8:tid 140718848841472] (70007)The timeout specified has expired: [client 129.59.122.30:7721] AH01102: error reading status line from remote server tomcat-mentoring:8080
+[Wed Feb 20 21:25:31.203935 2019] [proxy:error] [pid 8:tid 140718848841472] [client 129.59.122.30:7721] AH00898: Error reading from remote server returned by /mentoring-integ/services/metadata/90c5313a8d8b440fa905877da44e69f6
+[Wed Feb 20 21:25:31.207034 2019] [proxy_http:error] [pid 7:tid 140718857234176] (70007)The timeout specified has expired: [client 129.59.122.30:29057] AH01102: error reading status line from remote server tomcat-mentoring:8080
+[Wed Feb 20 21:25:31.207207 2019] [proxy:error] [pid 7:tid 140718857234176] [client 129.59.122.30:29057] AH00898: Error reading from remote server returned by /mentoring-integ/services/mentorships
+[Wed Feb 20 21:29:09.755311 2019] [proxy_http:error] [pid 8:tid 140718857234176] (70007)The timeout specified has expired: [client 129.59.122.30:35280] AH01102: error reading status line from remote server tomcat-mentoring:8080
+[Wed Feb 20 21:29:09.755426 2019] [proxy:error] [pid 8:tid 140718857234176] [client 129.59.122.30:35280] AH00898: Error reading from remote server returned by /mentoring-integ/services/metadata/90c5313a8d8b440fa905877da44e69f6
+[Wed Feb 20 21:29:09.757426 2019] [proxy_http:error] [pid 90:tid 140718874019584] (70007)The timeout specified has expired: [client 129.59.122.30:3312] AH01102: error reading status line from remote server tomcat-mentoring:8080
+[Wed Feb 20 21:29:09.757509 2019] [proxy:error] [pid 90:tid 140718874019584] [client 129.59.122.30:3312] AH00898: Error reading from remote server returned by /mentoring-integ/services/mentorships

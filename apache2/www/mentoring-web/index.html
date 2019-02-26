@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mentoring">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <title>{{ 'MENTORING' | translate }}</title>
+    <link rel="icon" href="resources/img/fgh.png"/>
+    <!--base href="/" /-->
+    
+    <link rel="stylesheet" href="resources/css/mentoring-web.min.css">
+    
+</head>
+<body>
+	<header class="header">
+		<div class="title">
+            <div class="logo">
+                <img src="resources/img/fgh.png" width="130" height="50">    
+            </div>
+
+            <div>
+                <p> {{ 'MENTORING' | translate }} </p>    
+            </div>
+
+            <div class="menu-button" ng-show="visible">
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+
+                            <li class="divider"></li>
+
+                            <li ng-controller="loginController" ng-click="logout()"><a><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>       
+            </div>
+            
+            <div class="menu-icon" ng-show="visible">
+                <img src="resources/img/menu.png">
+            </div>
+
+        </div>
+        
+	</header>
+    
+    <aside class="sidebar" ng-show="visible">
+        <p>{{ 'INITIAL_MENU' | translate }}</p>
+        <div ng-include = "'menu.html'" class="navbar-default"/>
+    </aside>
+
+    <spinner name="processSpinner" img-src="resources/img/ajax-loader.gif" id="spinner">
+         <p>{{ 'SPINNER' | translate }}</p>
+    </spinner>
+    
+	<section class="content">
+		<div ui-view />
+	</section>
+
+    <script src="resources/js/mentoring-web-vendor.min.js"></script>
+    
+    <script src="resources/js/mentoring-web.min.js"></script>
+
+    <footer ng-show="visible">   
+       Desenvolvido pelo FGH/SIS - his@fgh.org.mz © {{'YEAR' | translate }} © {{'VERSION' | translate }}
+    </footer>
+        
+</body>
+</html>

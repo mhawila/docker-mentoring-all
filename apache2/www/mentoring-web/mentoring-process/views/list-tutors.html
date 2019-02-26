@@ -1,0 +1,63 @@
+<form class="form-horizontal" name="listTutorForm" novalidate>
+
+	<div class="navbar navbar-default">
+	    <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="Pesquisar" ng-click="getTutorsBySelectedFilter()"/>
+            <input type="button" class="btn btn-default navbar-btn" value="Limpar" ng-click = "onOpenTutorDialog()"/>
+        </div>
+	</div>
+
+	<messages error-message="{{errorMessageDialog}}" message={{messageDialog}} ></messages>
+
+	<hr>
+
+	<div class="form-group">
+		<div class="col-md-3">
+		    <input id="tutorCode" placeholder="Código" name="'Código'" ng-model="tutorFilter.code" type="text" class="form-control" required/>
+		</div>
+
+		<div class="col-md-3">
+		    <input id="tutorName" placeholder="Nome" name="'Nome'" ng-model="tutorFilter.name" type="text" class="form-control"/>
+		</div>
+		<div class="col-md-3">
+		    <input id="tutorSurname" placeholder="Apelido" name="'Apelido'" ng-model="tutorFilter.surname" type="text" class="form-control"/>
+		</div>
+		<div class="col-md-3">
+	        <select id="category" name="'Categoria'" ng-model="tutorFilter.category" type="text" class="form-control" required>
+	            <option value="DATA_MANAGER" label="Gestor de Dados"/>
+	        </select>
+    	</div>
+	</div>
+
+	<hr>
+
+</form>
+
+<table st-table="tutorsDisplayed" class="table table-bordered" st-safe-src="tutors" >
+	<thead>
+		<tr>
+			<th class="col-md-1">{{'CODE' | translate}}</th>
+			<th class="col-md-5">{{'NAME' | translate}}</th>
+			<th class="col-md-2">{{'SURNAME' | translate}}</th>
+			<th class="col-md-3">{{'CARRER' | translate}}</th>
+		</tr>	
+	</thead>
+
+	<tbody>
+		<tr ng-click="onSelectTutor(tutor)"  data-toggle="modal" data-target="#myModal" ng-repeat="tutor in tutorsDisplayed">
+			<td>{{tutor.code}}</td>
+			<td>{{tutor.name}}</td>
+			<td>{{tutor.surname}}</td>
+			<td>{{tutor.career.position}}</td>
+		</tr>
+	</tbody>
+
+	<tfoot style="border:none;">
+        <tr>
+            <td colspan="4" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+	</tfoot>
+
+</table>

@@ -1,0 +1,24 @@
+<div class="header-menu">
+    <p>Cadastrar Tutor<p>
+</div>
+
+<form class="form-horizontal" name="createTutorForm" novalidate>
+    
+    <div class="navbar navbar-default">
+        <div class="col-md-6">
+            <input type="submit" class="btn btn-success navbar-btn" value="Cadastrar" ng-click="createTutor()"/>
+            <input type="button" class="btn btn-default navbar-btn" value="Limpar" ng-click = "cleanTutor()"/>
+        </div>
+    </div>
+    
+    <!-- Messages   -->
+    <messages message="{{message}}" error-message="{{errorMessage}}" has-errors="hasErrors" ></messages>
+    
+    <hr/>
+    
+        <div>
+            <div ng-include="'tutor/views/tutor-template.html'"></div> 
+        </div>
+
+    <hr/>
+</form>

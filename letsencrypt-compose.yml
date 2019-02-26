@@ -1,0 +1,16 @@
+version: '2'
+services:
+    letsencrypt:
+       image: quay.io/letsencrypt/letsencrypt:latest
+       command: bash -c "sleep 6 && certbot certonly --standalone -d dev.fgh.org.mz --server https://acme-v01.api.letsencrypt.org/directory --non-interactive --text --agree-tos --email mhawila.a.mhawila@vumc.org --rsa-key-size 4096 --verbose --renew-by-default --preferred-challenges http-01"
+       entrypoint: ""
+       hostname: letsencrypt
+       container_name: letsencrypt
+       volumes:
+          - /opt/etc/letsencrypt:/etc/letsencrypt
+          - /opt/lib/letsencrypt:/var/lib/letsencrypt
+       ports:
+          - "80:80"
+          - "443:443"
+       environment:
+          - TERM=xterm

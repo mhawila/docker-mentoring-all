@@ -1,0 +1,15 @@
+<hr>
+  <div ng-include="'form/views/form-details-template.html'"></div>
+<hr>
+<div class="navbar navbar-default">
+     <div class="col-md-12">
+        <button class="btn btn-success navbar-btn" ng-click="nextDetails()">
+          <i class="fa fa-step-forward"></i>
+          {{'NEXT' | translate}}
+        </button>
+        <button class="btn btn-default navbar-btn" type="button" ng-click="cleanForm()" >
+          <i class="fa fa-refresh"></i>
+          {{'CLEAN' | translate}}
+        </button>
+    </div>
+</div>

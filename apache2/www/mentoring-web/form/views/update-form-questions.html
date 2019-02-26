@@ -1,0 +1,189 @@
+<div class="form-group">
+  <div class="col-md-6">
+    <label style="font-weight:normal !important;">{{'NAME' | translate}}: </label>
+    <label>{{form.name}}</label>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-6">
+    <label style="font-weight:normal !important;">{{'PROGRAMMATIC_AREA' | translate}}: </label>
+    <label>{{form.programmaticArea.name}}</label>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-6">
+    <label style="font-weight:normal !important;">{{'TARGET_PATIENT' | translate}}: </label>
+    <label>{{form.targetPatient}}</label>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-6">
+    <label style="font-weight:normal !important;">{{'TARGET_FILE' | translate}}: </label>
+    <label>{{form.targetFile}}</label>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-md-6">
+    <label style="font-weight:normal !important;">{{'DESCRIPTION' | translate}}: </label>
+    <label>{{form.description}}</label>
+  </div>
+</div>
+
+<hr/>
+
+<div class="form-group">
+  <div class="col-md-1">
+     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addQuestionsModal"  ng-disabled="isDisabled">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        {{'ADD_QUESTIONS' | translate}}
+     </button>
+  </div>
+</div>
+
+<hr/>
+
+<table st-table="formQuestionsDisplayed" class="table table-bordered" st-safe-src="formQuestions" >
+  <thead>
+    <tr>
+      <th class="text-capitalize">{{ 'SEQUENCE' | translate }}</th>
+      <th class="col-md-1">{{'CODE' | translate}}</th>
+      <th class="col-md-1">{{'APLICABLE' | translate}}</th>
+      <th class="col-md-7">{{'QUESTION' | translate}}</th>
+      <th class="col-md-2">{{'QUESTION_TYPE' | translate}}</th>
+    </tr> 
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="formQuestion in formQuestionsDisplayed track by $index">
+      <td>
+          <select class="form-control" ng-model="formQuestion.newSequence"
+              ng-options="sequence as sequence for sequence in sequences" ng-change="onSequenceChange(formQuestion)">
+          </select>
+      </td>
+      <td>{{formQuestion.question.code}}</td>
+      <td>
+        <select class="form-control" ng-model="formQuestion.applicable"
+            ng-options="applicable | translate for applicable in applicables">
+        </select>
+    </td>
+      <td>{{formQuestion.question.question}}</td>
+      <td>{{formQuestion.question.questionType | translate}}</td>
+      <td align="center" width="4%">
+        <button type="button" class="btn btn-sm btn-danger" ng-click="removeQuestion(formQuestion)">
+          <i class="fa fa-times-circle-o"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+
+  <tfoot style="border:none;">
+        <tr>
+            <td colspan="4" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+  </tfoot>
+
+</table>
+
+  <div class="navbar navbar-default">
+      <div class="col-md-12">
+          <button class="btn btn-success navbar-btn" ng-click="updateForm()" ng-disabled="isDisabled">
+            <i class="fa fa-save"></i>
+            {{'UPDATE' | translate}}
+          </button>
+          <button class="btn btn-warning navbar-btn pull-right" ng-click = "back()" ng-disabled="isDisabled">
+            <span class="fa fa-step-backward"></span>
+            {{'PREVIEWS' | translate}}
+          </button>
+      </div>
+  </div>
+
+  <div class="modal fade" id="addQuestionsModal" tabindex="-1" role="dialog" aria-labelledby="addQuestionsModalLabel" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{'ADD_QUESTIONS' | translate }}</h4>
+      </div>
+
+      <form class="form-horizontal" name="addQuestionsForm" novalidate>
+        
+        <div class="modal-body">
+
+          <div class="navbar navbar-default">
+              <div class="col-md-12">
+                  <button type="submit" class="btn btn-success navbar-btn" ng-click="getQuestions()">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    {{'SEARCH' | translate}}
+                  </button>
+                  <button class="btn btn-default navbar-btn pull-right" type="button" ng-click="onAddQuestion()">
+                    <i class="fa fa-refresh"></i>
+                    {{'CLEAN' | translate}}
+                  </button>
+              </div>
+          </div>
+
+          <messages message="{{addQuestionMessage}}" error-message="{{addQuestionErrorMessage}}" has-errors="hasErrors"></messages>
+
+          <div class="form-group">
+            <div class="col-md-4">
+                <input id="questionCode" placeholder="{{'CODE' | translate}}" name="'{{'CODE' | translate}}'" ng-model="questionFilter.code" type="text" class="form-control" autocomplete="off"/>
+            </div>
+
+            <div class="col-md-4">
+                <input id="question" placeholder="{{'QUESTION' | translate}}" name="'{{'QUESTION' | translate}}'" ng-model="questionFilter.question" type="text" class="form-control" autocomplete="off"/>
+            </div>
+            <div class="col-md-4">
+                  <select id="questionType" name="'{{'QUESTION_TYPE' | translate}}'" ng-model="questionFilter.questionType" type="text" class="form-control">
+                      <option value="TEXT" label="Texto"/>
+                  </select>
+              </div>
+          </div>
+          
+          <table st-table="displyedQuestionsUpdate" class="table table-bordered" st-safe-src="questionsUpdate" >
+            <thead>
+              <tr>
+                <th class="col-md-2">{{'CODE' | translate}}</th>
+                <th class="col-md-7">{{'QUESTION' | translate}}</th>
+                <th class="col-md-2">{{'QUESTION_TYPE' | translate}}</th>
+              </tr> 
+            </thead>
+
+            <tbody>
+              <tr ng-repeat="questionUpdate in displyedQuestionsUpdate" ng-click="addQuestion(questionUpdate)">
+                <td>{{questionUpdate.code}}</td>
+                <td>{{questionUpdate.question}}</td>
+                <td>{{questionUpdate.questionType | translate}}</td>
+              </tr>
+            </tbody>
+
+            <tfoot style="border:none;">
+                  <tr>
+                      <td colspan="4" class="text-center">
+                          <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                      </td>
+                  </tr>
+            </tfoot>
+        </table>
+
+        </div>
+        
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-dismiss="modal">
+              <i class="fa fa-close"></i>
+              {{'CLOSE' | translate}} 
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+	

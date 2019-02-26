@@ -1,0 +1,55 @@
+<div class="sidebar-nav">
+    <ul class="nav" menu >
+        <li>
+            <a id="tutorsAndTutoreds"><i class="fa fa-users"></i> {{ 'TUTORES_AND_TUTOREDS' | translate }} <i class="fa fa-chevron-circle-right" style="float:right"></i></a>
+            <ul class="nav nav-second-level">
+                <li><a ui-sref="createTutor"><i class="fa fa-user-plus"></i> {{ 'CREATE_TUTOR' | translate }}</a></li>
+                <li><a ui-sref="listTutor"><i class="fa fa-list"></i> {{ 'LIST_TUTOR' | translate }}</a></li>
+                <li><a ui-sref="mapTutorToProgrammaticArea.selectTutor"><i class="fa fa-sitemap"></i> {{ 'MAP_TUTOR_TO_PROGRAMMATIC_AREA' | translate }}</a></li>
+                <li><a ui-sref="createTutored" id="createTutored"><i class="fa fa-user-plus"></i> {{ 'CREATE_TUTORED' | translate }}</a></li>
+                <li><a ui-sref="listTutored"><i class="fa fa-list"></i> {{ 'LIST_TUTORED' | translate }}</a></li>
+            </ul>
+        </li>
+        <li>
+            <a><i class="fa fa-institution"></i> {{'PROGRAMMATIC_AREAS' | translate }}<i class="fa fa-chevron-circle-right" style="float:right"></i></a>
+            <ul class="nav nav-second-level">
+                <li><a ui-sref="createProgrammaticArea"><i class="fa fa-plus-square"></i> {{ 'CREATE_PROGRAMATIC_AREA' | translate }}</a></li>
+                <li><a ui-sref="listProgrammaticAreas"><i class="fa fa-list"></i>{{ 'LIST_PROGRAMATIC_AREA' | translate }}</a></li>
+            </ul>
+        </li>
+        
+        <li>
+            <a><i class="fa fa-question-circle"></i> {{'QUESTIONS' | translate}} <i class="fa fa-chevron-circle-right" style="float:right"></i></a>
+            <ul class="nav nav-second-level">
+               <li><a ui-sref="createQuestion"><i class="fa fa-question-circle-o"></i> {{'CREATE_QUESTION' | translate}}</a></li>
+               <li><a ui-sref="listQuestions"><i class="fa fa-list"></i> {{'LIST_QUESTIONS' | translate}}</a></li>
+            </ul>
+        </li>
+        
+        <li>
+            <a><i class="fa fa-file"></i> {{ 'FORM' | translate }} <i class="fa fa-chevron-circle-right" style="float:right"></i></a>
+            <ul class="nav nav-second-level">
+                <li><a ui-sref="form.details"><i class="fa fa-file-text"></i> {{ 'CREATE_FORM' | translate }}</a></li>
+                <li><a ui-sref="listFormQuestions"><i class="fa fa-list"></i> {{ 'LIST_FORM' | translate }}</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a><i class="fa fa-gears"></i> {{ 'MENTORING' | translate }} <i class="fa fa-chevron-circle-right" style="float:right"></i></a>
+            <ul class="nav nav-second-level">
+                <li><a ui-sref="mentoringProcess.questions({questionId : questionId})"><i class="fa fa-gear"></i> {{ 'CREATE_MENTORING_PROCESS' | translate }}</a></li>
+                <li><a ui-sref="listMentoringProcess"><i class="fa fa-list"></i> {{ 'LIST_MENTORING_PROCESS' | translate }}</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a><i class="fa fa-pie-chart"></i> {{ 'REPORT' | translate }} <i class="fa fa-chevron-circle-right" style="float:right"></i></a>
+            <ul class="nav nav-second-level">
+                <li><a ui-sref="sampleIndicatorsReport"><i class="fa fa-flask"></i> {{ 'SAMPLE_INDICATORS' | translate }}</a></li>
+                <li><a ui-sref="analysisTableReport"><i class="fa fa-flask"></i> {{ 'ANALYSIS_TABLE' | translate }}</a></li>
+                <li><a ui-sref="performedSessionsReport"><i class="fa fa-male"></i> {{ 'PERFORMED_SESSIONS' | translate }}</a></li>
+            </ul>
+        </li>
+        
+    </ul>
+</div>

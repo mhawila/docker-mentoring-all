@@ -1,0 +1,12 @@
+<div class="header-menu">
+	<p>{{'CREATE_FORM' | translate}}</p>
+</div>
+
+<form class="form-horizontal" name="createFormFrom" novalidate>
+    
+    <!-- Messages   -->
+    <messages message="{{message}}" error-message="{{errorMessage}}" has-errors="hasErrors" ></messages>
+
+    <div ui-view></div>
+    
+</form>
