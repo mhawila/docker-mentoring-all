@@ -4,7 +4,7 @@
 Mentoring ecosystem has 4 main components namely the account-manager, mentoring, mentoring-web, and mentoring-mobile.
 
 ### Account manager
-This is responsible for managing users account. Logins are handled through this component.
+This is responsible for managing users accounts. Logins are handled through this component.
 
 ### Mentoring
 This exposes the API that provides the mentoring features. Internally it has two sub-modules, the core (mentoring-core) and the integration (mentoring-integ) which exposes the API as REST endpoints.
@@ -16,7 +16,7 @@ An angular 1 based web application that is mainly used for administration purpos
 An android application allowing mentors to consume the mentoring project services during mentoring sessions. It allows tracking of mentoring sessions in realtime or retrospectively.
 
 ## _Purpose_
-This project creates a setup that will enable user to easily deploy the mentoring ecosystem with minimal configurations in place. There are two ways to deploy.
+This project creates a setup that will enable users to easily deploy the mentoring ecosystem with minimal configurations in place. There are two ways to deploy.
 
 1. Without Apache2 & TLS security (plain old docker port publishing)
 2. With TLS security using Apache2 as reverse proxy.
@@ -43,7 +43,7 @@ MENTORING_TOMCAT_PUBLISHED_PORT=8090
 MENTORING_TOMCAT_WEBAPPS=/home/user1/mentoring_docker_volumes/webapps/mentoring
 ```
 ##### __Note:__
-You don't have to specify all the environment because there are already default values provided. Also make sure the port numbers you are binding to are not already used by other services
+You don't have to specify the environment variables because there are already default values provided. Whether using default values or providing custom values make sure the port numbers you are binding to are not already used by other services.
 
 ### With Apache2 Reverse Proxy & TLS Security
 This is exactly similar with an additional of the Apache2 server configured as a reverse proxy server. It is particularly useful when serving the API to external audience, for example, when deploying the mobile application.
