@@ -47,3 +47,16 @@ You don't have to specify the environment variables because there are already de
 
 ### With Apache2 Reverse Proxy & TLS Security
 This is exactly similar with an additional of the Apache2 server configured as a reverse proxy server. It is particularly useful when serving the API to external audience, for example, when deploying the mobile application.
+
+TLS security is configured by soliciting free certificates from [Let's Encrypt CA](https://letsencrypt.org). The Apache2 container expects to find the certificates in the configured certificate location. When running for the first time, the letsencrypt service that communicate with the CA server to obtain the certificate has to run and finish before the apache service is run, unfortunately there is not way to ensure this in docker-compose file. As a result the two services have to be run independently in the correct order. The two services are declared in files `letsencrypt-compose.yml` and `apache2-compose.yml` respectively. Consequently the volume holding the certificates declaration (i.e. the host directory) has to match as well. The default host directory is `/opt/etc/letsencrypt`.
+
+The way to run the containers in order is shown below.
+```bash
+$ docker-compose -f letsencrypt-compose.yml up --build -d --force-recreate
+$ docker-compose -f apache2-compose.yml up --build -d
+```
+##### __Note:__
+The apache2 container is dependent on the mentoring services, so make sure the containers are already running before firing it up.
+
+### Work In Progress
+Creating a script that ties everything together saving the user all the trouble mentioned above...
